@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Feedback List</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>UserId</th>
+          <th>Comment</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of feedbackList">
+          <td>{{ feedback.userId }}</td>
+          <td>{{ feedback.comment }}</td>
+          <td>
+            <ng-container *ngFor="let star of generateStars(feedback.rating)">
+              <span class="star">&#9733;</span>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

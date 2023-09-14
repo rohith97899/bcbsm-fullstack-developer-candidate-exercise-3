@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>User Feedback</h2>
+    <form (ngSubmit)="submitFeedback()">
+      <div class="form-group">
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" [(ngModel)]="feedback.comment" class="form-control" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="rating">Star Rating:</label>
+        <div class="star-rating">
+          <span class="star" *ngFor="let star of stars; let i = index" (click)="setRating(i + 1)" [class.filled]="i < feedback.rating">&#9733;</span>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit Feedback</button>
+    </form>
+  </div>
+  

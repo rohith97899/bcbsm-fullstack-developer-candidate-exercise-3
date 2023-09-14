@@ -1,0 +1,10 @@
+<div class="container">
+  <header class="jumbotron">
+    <div *ngIf="userRole === 'ROLE_USER'">
+      <app-board-user></app-board-user> 
+    </div>
+    <div *ngIf="userRole === 'ROLE_ADMIN'">
+      <app-board-admin></app-board-admin>
+    </div>
+  </header>
+</div>
