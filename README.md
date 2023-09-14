@@ -19,3 +19,20 @@
 Springboot  
 Angular/NextJS/ReactJS  
 MongoDB/MySql
+
+
+Intro of the project - 
+The project aims to create a robust single-page web application that incorporates user authentication and authorization using Spring WebSecurity, allowing for both regular USER and ADMIN roles.
+This application is built on a technology stack that uses Spring Boot for the backend, and  Angular for front end
+ The structure of the feedback includes rating value, comment, the user who submitted it
+ we are using Mysql for the database 
+ Upon successful feedback submission, users receive a success message, and their feedback is displayed.
+
+
+ Spring Boot Application:
+1. Launch the Spring Boot application using the command: `mvn spring-boot:run`.
+
+Front End:
+1. Utilize `npm install` to set up the necessary node modules.
+2. Commence the client-side by running `ng serve` in the front end.
+3. You can access the application by visiting http://localhost:4200/.
