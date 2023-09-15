@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
+import { EventData } from '../shared/event.class';
+import { EventBusService } from '../shared/event-bus.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   role: string = '';
 
-  constructor(private authService: AuthService, private storageService: StorageService, private router: Router) { }
+  constructor(private eventBusService: EventBusService, private authService: AuthService, private storageService: StorageService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
@@ -36,10 +38,11 @@ export class LoginComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        this.eventBusService.emit(new EventData('login', null));
         this.role = this.storageService.getUser().role;
-        if (this.role === 'USER_ROLE') {
+        if (this.role === 'ROLE_USER') {
           this.router.navigate(['/user']);
-        } else if (this.role === 'USER_ADMIN'){
+        } else if (this.role === 'ROLE_ADMIN'){
           this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['home']);

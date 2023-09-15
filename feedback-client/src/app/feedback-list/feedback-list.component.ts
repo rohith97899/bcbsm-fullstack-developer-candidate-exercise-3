@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./feedback-list.component.css'],
 })
 export class FeedbackListComponent {
-  @Input() feedbackList: { id: string; userId: string; comment: string; rating: number }[] = [];
+  @Input() feedbackList: { id: string; userId: string; comment: string; rating: number, date: string }[] = [];
 
   generateStars(rating: number): number[] {
     return Array.from({ length: rating }, (_, index) => index + 1);

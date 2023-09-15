@@ -10,7 +10,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'user', component: BoardUserComponent, canActivate: [AuthGuard], data: { requiredRole: 'ROLE_USER' } },
