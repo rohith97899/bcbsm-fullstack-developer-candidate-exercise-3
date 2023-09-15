@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -30,14 +31,16 @@ public class FeedbackController {
 
     @Autowired
     private FeedbackRepository feedbackRepo;
+
     @GetMapping("/getFeedbacks")
     public List<Feedback> getFeedbacks(@CurrentUser UserPrincipal currentUser) {
         User user = userRepository.getById(currentUser.getId());
         Role role = user.getRoles().stream().findFirst().get();
         if(role.getName().equals(RoleName.ROLE_USER))
-			return feedbackRepo.findByUserId(currentUser.getId());
+            return feedbackRepo.findByUserId(currentUser.getId());
         return feedbackRepo.findAll();
     }
+
 
     @PostMapping("/addFeedback")
     public ResponseEntity<?> addFeedback(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody AddFeedbackRequest feedbackRequest) {
@@ -51,6 +54,9 @@ public class FeedbackController {
         feedback.setUserId(currentUser.getId());
         feedback.setComment(feedbackRequest.comment());
         feedback.setRating(rating);
+
+        // Set the current date as the record insertion date
+        feedback.setDate(new Date());
         feedbackRepo.save(feedback);
 
         URI location = ServletUriComponentsBuilder

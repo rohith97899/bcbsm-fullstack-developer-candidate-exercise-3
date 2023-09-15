@@ -2,6 +2,7 @@ package com.rohit.feedback.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Date; // Import the Date class
 
 @Entity
 @Table(name = "feedbacks")
@@ -10,16 +11,19 @@ public class Feedback {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "user_id") // Map to the 'user_id' column in the database
-	private Long userId; // Use Java naming conventions (camelCase) for field names
+	@Column(name = "user_id")
+	private Long userId;
 
 	private String comment;
 	private Long rating;
 
+	@Temporal(TemporalType.DATE) // Specify the TemporalType as DATE
+	private Date date; // Add the date field
+
 	public Feedback() {
 	}
 
-	public Long getId() { // Use getId() instead of id()
+	public Long getId() {
 		return id;
 	}
 
@@ -27,7 +31,7 @@ public class Feedback {
 		this.id = id;
 	}
 
-	public Long getUserId() { // Use getUserId() instead of user_id()
+	public Long getUserId() {
 		return userId;
 	}
 
@@ -35,7 +39,7 @@ public class Feedback {
 		this.userId = userId;
 	}
 
-	public String getComment() { // Use getComment() instead of comment()
+	public String getComment() {
 		return comment;
 	}
 
@@ -43,11 +47,19 @@ public class Feedback {
 		this.comment = comment;
 	}
 
-	public Long getRating() { // Use getRating() instead of rating()
+	public Long getRating() {
 		return rating;
 	}
 
 	public void setRating(Long rating) {
 		this.rating = rating;
+	}
+
+	public Date getDate() { // Getter for the date field
+		return date;
+	}
+
+	public void setDate(Date date) { // Setter for the date field
+		this.date = date;
 	}
 }
